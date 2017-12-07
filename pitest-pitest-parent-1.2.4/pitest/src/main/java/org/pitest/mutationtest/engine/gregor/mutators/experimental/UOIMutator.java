@@ -117,6 +117,7 @@ class AddIncrementsMethodVisitorC extends MethodVisitor {
       if (this.context.shouldMutate(newId)) {
           this.mv.visitVarInsn(opcode, var);
           this.mv.visitIincInsn(var, 1);
+          this.mv.visitVarInsn(Opcodes.ISTORE, var);
           super.visitVarInsn(opcode, var);
       } else {
           super.visitVarInsn(opcode, var);
@@ -187,6 +188,7 @@ class AddDecrementsMethodVisitorC extends MethodVisitor {
         if (this.context.shouldMutate(newId)) {
             this.mv.visitVarInsn(opcode, var);
             this.mv.visitIincInsn(var, -1);
+            this.mv.visitVarInsn(Opcodes.ISTORE, var);
             super.visitVarInsn(opcode, var);
         } else {
             super.visitVarInsn(opcode, var);
